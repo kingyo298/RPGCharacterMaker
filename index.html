@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+      <div id="app" class="game-maker" v-cloak>
+        <div class="container text-white pt-5">
+          <h3 class="mb-3">表示エリア</h3>
+          <div class="display d-md-flex justify-content-between align-items-center bg-dark p-3 mb-5">
+            <div class="chara-img col-12 col-md-3 p-3 border-white mb-3 mb-md-0">
+              <img class="img-fit" :src="matched[0].imgSrc" alt="">
+            </div>
+            <div class="info col-12 col-md-9 pr-0 pl-0 pl-md-3">
+              <div class="info-basic border-white mb-3">
+                <ul>
+                  <li>Name : {{name}}</li>
+                  <li>Class : {{jobs[selectedJob]}}</li>
+                  <li>Gender : {{picked}}</li>
+                  <li>Traits : {{selectedTrait}}</li>
+                </ul>
+              </div>
+              <div class="status border-white">
+                <ul>
+                  <li>Strength : {{calculateStatus().strength}}</li>
+                  <li>Agility : {{calculateStatus().agility}}</li>
+                  <li>Resilience : {{calculateStatus().resilience}}</li>
+                  <li>Wisdom : {{calculateStatus().wisdom}}</li>
+                  <li>Luck : {{calculateStatus().luck}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="input-area py-5 px-2">
+            <h3 class="mb-3">入力エリア</h3>
+            <div class="form-group mb-3 d-flex">
+              <label class="py-2 pr-2 pl-0 col-md-1">Name</label>
+              <input type="text" value="Unknown" class="col-10 col-md-3 form-control" v-model="name">
+            </div>
+            <div class="form-group mb-3 d-flex">
+              <label class="form-check-label col-md-1 py-2 pr-2 pl-0" for="male">Gender</label>
+              <div class="col-10 col-md-3 d-flex align-items-center px-0">
+                <div class="mr-3">
+                  <input type="radio" value="Male" name="gender" id="male" v-model="picked">
+                  <label class="form-check-label" for="female">Male</label>
+                </div>
+                <div>
+                  <input type="radio" value="Female" name="gender" id="female" v-model="picked">
+                  <label class="form-check-label">Female</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3 d-flex">
+              <label class="py-2 pr-2 col-md-1 pl-0">Class</label>
+              <select class="form-select col-10 col-md-3 form-control" v-model="selectedJob">
+                <option v-for="(job,index) in jobs" :key="index" :value="index">{{job}}</option>
+              </select>
+            </div>
+            <div class="form-group mb-3 d-flex">
+              <label class="py-2 pr-2 col-md-1 pl-0">Traits</label>
+              <select class="form-select col-10 col-md-3 form-control" v-model="selectedTrait" @change="calculateStatus(selectedTrait)">
+                <option v-for="(trait,index) in traitRegulation" :key="index" :value="trait">{{trait}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Vue.js CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+      <!-- fontawesome -->
+      <script src="https://kit.fontawesome.com/0c75a87b1c.js" crossorigin="anonymous"></script>
+      <script src="main.js"></script>
+    </body>
+</html>

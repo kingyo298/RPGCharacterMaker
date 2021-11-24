@@ -1,0 +1,36 @@
+.game-maker {
+  font-family: National2CompressedWeb,"Helvetica Condensed","Arial Narrow",sans-serif;
+  letter-spacing: .05rem;
+  background: #326826;
+  font-size: 1.3rem;
+}
+
+.game-maker p {
+  margin: 0;
+}
+img{
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.img-fit {
+  object-fit: contain;
+}
+[v-cloak] { display: none; }
+li{
+  list-style: none;
+}
+ul{
+  margin: 0;
+}
+.display{
+  border-radius: 5px;
+}
+.border-white{
+  border: 3px solid white;
+  border-radius: 5px;
+}
+.input-area{
+  margin-right: auto;
+  font-size: 1.0rem;
+}
